@@ -15,3 +15,7 @@ def iss_position() -> tuple:
     year = time_obj.year
     day = time_obj.day
     return (latitide, longitude, day, month, year)
+
+
+if __name__ == "__main__":
+    print(*(iss_position()))
