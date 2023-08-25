@@ -7,7 +7,7 @@ def iss_position() -> tuple:
     result = requests.get("http://api.open-notify.org/iss-now.json",
                           timeout=10)
     data = json.loads(result.text)
-    timestamp, longitude, latitide = data['timestamp'], \
+    timestamp, longitude, latitude = data['timestamp'], \
         data['iss_position']['latitude'], \
         data['iss_position']['longitude']
     time_obj = datetime.fromtimestamp(timestamp)
@@ -16,7 +16,8 @@ def iss_position() -> tuple:
     day = time_obj.day
     hour = time_obj.hour
     minutes = time_obj.minute
-    return (latitide, longitude, day, month, year, hour, minutes)
+    return (round(float(latitude)), round(float(longitude)), day,
+            month, year, hour, minutes)
 
 
 if __name__ == "__main__":
